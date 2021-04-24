@@ -1,0 +1,29 @@
+{
+  "name": "apales_api_mail",
+  "version": "1.0.0",
+  "description": "Send Mail to Customer",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hight-Soft/apales_api_mail.git"
+  },
+  "author": "Joel Carrillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hight-Soft/apales_api_mail/issues"
+  },
+  "homepage": "https://github.com/Hight-Soft/apales_api_mail#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
