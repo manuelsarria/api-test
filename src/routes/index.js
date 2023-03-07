@@ -1,3 +1,5 @@
+// version google
+
 'use strict';
 const { Router } = require('express');
 const router = Router();
@@ -20,7 +22,6 @@ const con = mysql.createConnection({
   database: 'trackin3_trackingadmin',
 });
 
-console.log(process.env.CLIENT_ID, '>>>>>>>CLIENTID');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const SECRET_ID = process.env.SECRET_ID;
@@ -38,14 +39,7 @@ router.post('/', (req, res) => {
   const { branch, name, lastName, email, phone, birthDay, address, howDidYouFind, referred } =
     req.body;
 		
-	// if ( branch ) {
-	// 	console.log('vas pa fuera')
-	// 	return res.json({
-	// 		ok: true,
-	// 		process: process.env,
-	// 		msg: 'ya termino todo',
-	// 	});
-	// }
+
   
   con.query('SELECT * FROM casilleros WHERE id = ' + branch, (err, rows) => {
     if (err) throw err;
@@ -164,7 +158,8 @@ router.post('/', (req, res) => {
                 accessToken,
                 clientId: CLIENT_ID,
                 clientSecret: SECRET_ID,
-                refreshToken: REFRESH_TOKEN
+                refreshToken: REFRESH_TOKEN,
+                expires: 3600
               },
               tls: {
                 rejectUnauthorized: false
@@ -187,6 +182,8 @@ router.post('/', (req, res) => {
             html: contentHTMLClient,
           };
 
+          // await transporter.sendMail(mailClient);
+
           let mailBusiness = {
             from: process.env.MAIL_FROM,
             to: process.env.MAIL_TO_ADMIN + ',' + emailsFromDataBase,
@@ -194,6 +191,9 @@ router.post('/', (req, res) => {
             // text: "HOLA =)"//,
             html: contentHTMLBusiness,
           };
+
+          // await transporter.sendMail(mailBusiness);
+          // await res.status(200).send();
 
           const sendEmail = async (emailOptions) => {
             try {
@@ -210,22 +210,13 @@ router.post('/', (req, res) => {
 
           try {
             await sendEmail(mailClient)
-              .then(() => res.status(200).json({ status: 200 }))
+              .then(() => res.status(200).json({ status: 200, msg: 'aqui ejecuti=to el send' }))
               .catch((err) => console.log('Send Email Err', err));
             await sendEmail(mailBusiness);
           } catch (error) {
             console.log('Send Email Error: ', error)
             return res.status(500).json({ error: error.message || error.toString() });
           }
-
-          // try {
-          //   await sendEmail(mailBusiness)
-          //   .then(() => res.status(200).json({ status: 200 }))
-          //   .catch((err) => console.log('Send Email  Bussines Err', err));
-          // } catch (error) {
-          //   console.log('Send Email Error: ', error)
-          //   return res.status(500).json({ error: error.message || error.toString() });
-          // }
 
         });
       } catch (e) {

@@ -183,7 +183,7 @@ module.exports = {
                     </tr>
                     <tr>
                         <td align="center" nowrap="nowrap" style="padding:20px 0px 20px 0px;" width="100%">
-                        <a href="https://www.instagram.com/tracking.pty/" name="instagram" target="_blank" ><img alt="Instagram" border="0" height="32"  src="https://trackingpanama.com/logos/instagram.png" width="32" /></a></td>
+                        <a href="https://www.instagram.com/trackingpty/" name="instagram" target="_blank" ><img alt="Instagram" border="0" height="32"  src="https://trackingpanama.com/logos/instagram.png" width="32" /></a></td>
                                                             </tr>
                     <tr>
                         <td align="center" style="font-family:Segoe, \'Segoe UI\', \'DejaVu Sans\', \'Trebuchet MS\', Verdana, sans-serif; color: #1E1E19; font-size: 14px; padding:0px 20px 10px 20px;">

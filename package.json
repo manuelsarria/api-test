@@ -1,5 +1,5 @@
 {
-  "name": "apales_api_mail v2",
+  "name": "apales_api_mail",
   "version": "1.0.0",
   "description": "Send Mail to Customer",
   "main": "app.js",
