@@ -1,18 +1,12 @@
-// version google
-
+//version de mailjet
 'use strict';
 const { Router } = require('express');
 const router = Router();
-const fetch = require('node-fetch');
 const templateMail = require('./templateMail');
-const date = new Date();
 const nodemailer = require('nodemailer');
-//const request = require('request');
+
 require('dotenv').config({path:'../../.env'})
 const mysql = require('mysql');
-const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
-
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
 const con = mysql.createConnection({
@@ -21,12 +15,6 @@ const con = mysql.createConnection({
   password: 'trackin3_trackingadmin',
   database: 'trackin3_trackingadmin',
 });
-
-
-const CLIENT_ID = process.env.CLIENT_ID;
-const SECRET_ID = process.env.SECRET_ID;
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
-const REDIRECT_URI = process.env.REDIRECT_URI;
 
 con.connect((err) => {
   if (err) {
@@ -107,71 +95,15 @@ router.post('/', (req, res) => {
             process.env.POBOX_PHONE
           );
 
-          // let transporter = nodemailer.createTransport({
-          //     host: process.env.SERVER_MAIL,
-          //     port: process.env.SERVER_MAIL_PORT,
-          //     secure: true, // true for 465, false for other ports
-          //     auth: {
-          //       user: process.env.SERVER_MAIL_AUTH_USER,
-          //       pass: process.env.SERVER_MAIL_AUTH_PWD
-          //     },
-          //     tls: {rejectUnauthorized: false}
-          // });
-
-          // let transporter = nodemailer.createTransport({
-          //     host: 'smtp.gmail.com',
-          //     port: 465,
-          //     secure: true, // true for 465, false for other ports
-          //     auth: {
-          //       user: "trackingpty@gmail.com",
-          //       pass: "Tracking@50720-21@$"
-          //     },
-          //     tls: {rejectUnauthorized: false}
-          // });
-          
-          const createTransporter = async () => {
-
-            const oauth2Client = new OAuth2(
-              CLIENT_ID,
-              SECRET_ID,
-              REDIRECT_URI
-            );
-          
-            oauth2Client.setCredentials({
-              refresh_token: REFRESH_TOKEN
-            });
-          
-            const accessToken = await new Promise((resolve, reject) => {
-              oauth2Client.getAccessToken((err, token) => {
-                if (err) {
-                    reject(`Failed to create access token :(\n${err}`);
-                }
-                resolve(token);
-              });
-            }).catch((err) => console.log('Access Token Error: ', err));
-          
-            const transporter = nodemailer.createTransport({
-              service: "gmail",
-              auth: {
-                type: "OAuth2",
-                user: process.env.SERVER_MAIL_AUTH_USER,
-                accessToken,
-                clientId: CLIENT_ID,
-                clientSecret: SECRET_ID,
-                refreshToken: REFRESH_TOKEN,
-                expires: 3600
-              },
-              tls: {
-                rejectUnauthorized: false
-              }
-            });
-          
-            try {
-              return transporter;
-            } catch (error) {
-              console.log('Create Transport Error: ', error);
-            }
-          };
+          //create transport with mailjet
+          const transporter = nodemailer.createTransport({
+            host: process.env.SERVER_MAIL,
+            port: 465,
+            auth: {
+              user: process.env.SERVER_MAIL_AUTH_USER,
+              pass: process.env.SERVER_MAIL_AUTH_PWD,
+            },
+          });
 
           // Specify the fields in the email.
           let mailClient = {
@@ -182,7 +114,13 @@ router.post('/', (req, res) => {
             html: contentHTMLClient,
           };
 
-          // await transporter.sendMail(mailClient);
+          
+          try {
+            await transporter.sendMail(mailClient);
+          } catch (error) {
+            console.log(error);
+          }
+          
 
           let mailBusiness = {
             from: process.env.MAIL_FROM,
@@ -192,32 +130,13 @@ router.post('/', (req, res) => {
             html: contentHTMLBusiness,
           };
 
-          // await transporter.sendMail(mailBusiness);
-          // await res.status(200).send();
-
-          const sendEmail = async (emailOptions) => {
-            try {
-              let emailTransporter = await createTransporter();
-              const response = await emailTransporter
-                .sendMail(emailOptions)
-                .catch((err) => console.log('Email Transport Err: ', err));
-
-              return response;
-            } catch (error) {
-              console.log('Email Transport Error: ', error);
-            }
-          };
-
           try {
-            await sendEmail(mailClient)
-              .then(() => res.status(200).json({ status: 200, msg: 'aqui ejecuti=to el send' }))
-              .catch((err) => console.log('Send Email Err', err));
-            await sendEmail(mailBusiness);
+            await transporter.sendMail(mailBusiness);
+            await res.status(200).send();
           } catch (error) {
-            console.log('Send Email Error: ', error)
-            return res.status(500).json({ error: error.message || error.toString() });
+            console.log(error);
           }
-
+          
         });
       } catch (e) {
         console.log(`Error: ${e}`);
