@@ -4,7 +4,7 @@
   "description": "Send Mail to Customer",
   "main": "app.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm install --production=false && rm -rf node_modules && npm install --production --frozen-lockfile",
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
