@@ -9,7 +9,7 @@ require('dotenv').config({path:'../../.env'})
 const mysql = require('mysql');
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
-console.log(process.env.DB_HOST, '<<<>>>>NEVIMROMENT DBBBBBB');
+console.log(process.env, '<<<>>>>NEVIMROMENT DBBBBBB');
 const con = mysql.createConnection({
   host: toString(process.env.DB_HOST),
   user: toString(process.env.DB_USER),
