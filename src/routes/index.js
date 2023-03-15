@@ -11,10 +11,10 @@ const mysql = require('mysql');
 // Be sure to replace 'user' and 'password' with the correct values
 console.log(process.env.DB_HOST, '<<<>>>>NEVIMROMENT DBBBBBB');
 const con = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  host: toString(process.env.DB_HOST),
+  user: toString(process.env.DB_USER),
+  password: toString(process.env.DB_PASSWORD),
+  database: toString(process.env.DB_DATABASE)
 });
 
 con.connect((err) => {
