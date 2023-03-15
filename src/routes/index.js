@@ -9,14 +9,6 @@ require('dotenv').config({path:'../../.env'})
 const mysql = require('mysql');
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
-
-// const con = mysql.createConnection({
-//   host: toString(process.env.DB_HOST),
-//   user: toString(process.env.DB_USER),
-//   password: toString(process.env.DB_PASSWORD),
-//   database: toString(process.env.DB_DATABASE)
-// });
-
 const con = mysql.createConnection({
   host: '145.239.65.83',
   user: 'trackin3_trackingadmin',
