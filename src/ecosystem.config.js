@@ -2,7 +2,7 @@ module.export = {
   apps: [
     {
       name: 'my-app',
-      script: '/var/www/api-test/src/index.js',
+      script: 'index.js',
       env: {
         NODE_ENV: "development",
       },
