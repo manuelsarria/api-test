@@ -10,10 +10,10 @@ const mysql = require('mysql');
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
 const con = mysql.createConnection({
-  host: '145.239.65.83',
-  user: 'trackin3_trackingadmin',
-  password: 'trackin3_trackingadmin',
-  database: 'trackin3_trackingadmin',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
 });
 
 con.connect((err) => {
