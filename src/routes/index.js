@@ -24,6 +24,8 @@ con.connect((err) => {
 });
 
 router.post('/', (req, res) => {
+
+  console.log('>>>>>>>TESTTTTTTTTTT', process.env.SERVER_MAIL);
   const { branch, name, lastName, email, phone, birthDay, address, howDidYouFind, referred } =
     req.body;
 		
