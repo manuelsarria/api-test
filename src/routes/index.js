@@ -98,7 +98,7 @@ router.post('/', (req, res) => {
           //create transport with mailjet
           const transporter = nodemailer.createTransport({
             host: process.env.SERVER_MAIL,
-            port: 465,
+            port: 587,
             auth: {
               user: process.env.SERVER_MAIL_AUTH_USER,
               pass: process.env.SERVER_MAIL_AUTH_PWD,
