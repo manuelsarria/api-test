@@ -188,7 +188,7 @@ module.exports = {
                     <tr>
                         <td align="center" style="font-family:Segoe, \'Segoe UI\', \'DejaVu Sans\', \'Trebuchet MS\', Verdana, sans-serif; color: #1E1E19; font-size: 14px; padding:0px 20px 10px 20px;">
                         Tracking PTY<br />
-                        <a href="https://api.whatsapp.com/send?phone=50762136616" style="color:#54595F; text-decoration:none;">+507 6213-6616</a>
+                        <a href="https://api.whatsapp.com/send?phone=50762089311" style="color:#54595F; text-decoration:none;">+507 6208-9311</a>
                         
                         </td>
                     </tr>
@@ -354,7 +354,7 @@ module.exports = {
                                           <tr>
                                               <td align="center" style="font-family:Segoe, \'Segoe UI\', \'DejaVu Sans\', \'Trebuchet MS\', Verdana, sans-serif; color: #1E1E19; font-size: 14px; padding:0px 20px 10px 20px;">
                                               Tracking PTY<br />
-                                              <a href="https://api.whatsapp.com/send?phone=50762136616" style="color:#54595F; text-decoration:none;">+507 6213-6616</a>
+                                              <a href="https://api.whatsapp.com/send?phone=50762089311" style="color:#54595F; text-decoration:none;">+507 6208-9311</a>
                                               </td>
                                           </tr>
                                           <tr>
