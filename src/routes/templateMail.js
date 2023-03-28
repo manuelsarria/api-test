@@ -311,15 +311,15 @@ module.exports = {
 
 
                                                 **********
-                                                 <br> ¡Hola ${name}!
+                                                 <br> *¡Hola ${name}!*
                                                  <br> Gracias por registrarte con nosotros, te enviamos un correo con los datos:
-                                                 <br> Nombre: ${name} ${lastName} ${locker}
-                                                 <br> Dirección: ${process.env.POBOX_ADDRESS}
-                                                 <br> País: ${process.env.POBOX_COUNTRY}
-                                                 <br> Estado: ${process.env.POBOX_STATE} 
-                                                 <br> Postal: ${process.env.POBOX_ZIPCODE}
-                                                 <br> Número: ${process.env.POBOX_PHONE}
-                                                 <br> Vuelos diarios. Recuerda, no cobramos volumen! :)
+                                                 <br> *Nombre:* ${name} ${lastName} ${locker}
+                                                 <br> *Dirección:* ${process.env.POBOX_ADDRESS}
+                                                 <br> *País:* ${process.env.POBOX_COUNTRY}
+                                                 <br> *Estado:* ${process.env.POBOX_STATE} 
+                                                 <br> *Postal:* ${process.env.POBOX_ZIPCODE}
+                                                 <br> *Número:* ${process.env.POBOX_PHONE}
+                                                 <br> *Vuelos diarios. Recuerda, no cobramos volumen! :)*
                                                  <br> 
                                                 **********
 
