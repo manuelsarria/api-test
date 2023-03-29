@@ -9,6 +9,7 @@ require('dotenv').config({path:'../../.env'})
 const mysql = require('mysql');
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
+const sgMail = require('@sendgrid/mail');
 const con = mysql.createConnection({
   host: '145.239.65.83',
   user: 'trackin3_trackingadmin',
@@ -23,9 +24,10 @@ con.connect((err) => {
   }
 });
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 router.post('/', (req, res) => {
 
-  console.log('>>>>>>>TESTTTTTTTTTT', process.env.SERVER_MAIL);
   const { branch, name, lastName, email, phone, birthDay, address, howDidYouFind, referred } =
     req.body;
 		
@@ -98,14 +100,22 @@ router.post('/', (req, res) => {
           );
 
           //create transport with mailjet
+          // const transporter = nodemailer.createTransport({
+          //   host: process.env.SERVER_MAIL,
+          //   port: 465,
+          //   secure: true,
+          //   auth: {
+          //     user: process.env.SERVER_MAIL_AUTH_USER,
+          //     pass: process.env.SERVER_MAIL_AUTH_PWD,
+          //   },
+          // });
+
           const transporter = nodemailer.createTransport({
-            host: process.env.SERVER_MAIL,
-            port: 465,
-            secure: true,
+            service: 'SendGrid',
             auth: {
-              user: process.env.SERVER_MAIL_AUTH_USER,
-              pass: process.env.SERVER_MAIL_AUTH_PWD,
-            },
+              user: 'apikey',
+              pass: process.env.SENDGRID_API_KEY
+            }
           });
 
           // Specify the fields in the email.
