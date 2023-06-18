@@ -1,6 +1,6 @@
 module.exports = {
-  templateClient: function (name,nameFullLocker,addressLocker, country, state, zipCode, Phone) {
-      return `<html>
+  templateClient: function (name, nameFullLocker, addressLocker, country, state, zipCode, Phone) {
+    return `<html>
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>TrackingPTY- Registro de Nuevo Cliente</title>
@@ -148,17 +148,19 @@ module.exports = {
                       A continuación se detalla la información de tú nuevo casillero 📦 :<br />
                       &nbsp;
                       <br /> 
-                      <b>Nombre:</b>  ${nameFullLocker}
+                      <b>Nombre/Name:</b>  ${nameFullLocker}
                       <br>
-                      <b>Dirección:</b>  ${addressLocker}
+                      <b>Dirección/Address:</b>  ${addressLocker}
+                      <br>
+                      <b>Dirección 2/ Address 2:</b>  ${addressLocker}
                       <br>                                                
-                      <b>País:</b>  ${country} 
+                      <b>País/Country:</b>  ${country} 
                       <br>
-                      <b>Estado:</b>  ${state} 
+                      <b>Estado/State:</b>  ${state} 
                       <br>
-                      <b>Postal:</b>  ${zipCode} 
+                      <b>Postal/ZipCode:</b>  ${zipCode} 
                       <br>
-                      <b>Número de teléfono:</b>  ${Phone} 
+                      <b>Número de teléfono/Phone:</b>  ${Phone} 
                       <br>                                     
                       </tr>
                       <tr>
@@ -211,11 +213,21 @@ module.exports = {
             <![endif]-->
       </body>
     </html>
-    `
+    `;
   },
-  templateBusiness: function (name,lastName,email,phone,birthDay,address,howDidYouFind,referred,locker) {
-   let hour = new Date().toLocaleString("es-BO", {timeZone: "America/Bogota"})
-   return `<html>
+  templateBusiness: function (
+    name,
+    lastName,
+    email,
+    phone,
+    birthDay,
+    address,
+    howDidYouFind,
+    referred,
+    locker
+  ) {
+    let hour = new Date().toLocaleString('es-BO', { timeZone: 'America/Bogota' });
+    return `<html>
           <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
               <title>TrackingPTY- Confirmación de Contacto</title>
               <style type="text/css">body {
@@ -376,39 +388,33 @@ module.exports = {
               </table>
               <![endif]-->
           </body>
-      </html>`
-  }, 
-  getMessageWelcome: function(name,gender){
+      </html>`;
+  },
+  getMessageWelcome: function (name, gender) {
+    const date = new Date();
+    var hora = date.getHours();
 
-      const date = new Date()
-      var hora = date.getHours()
+    switch (gender) {
+      case 'male':
+        gender = 'Sr.';
+        break;
+      case 'female':
+        gender = 'Sra.';
+        break;
+      default:
+        gender = 'Estimado(a) ';
+        break;
+    }
 
-      switch(gender)
-      {
-          case "male": 
-          gender = "Sr."
-          break;
-          case "female": 
-          gender = "Sra."
-          break;
-          default: 
-          gender = "Estimado(a) "
-          break;
-      }
-      
-      if (hora >= 0 && hora <12)
-      {
-          return messageWelcome = "Buenos días "+gender+" "+name + "!!"
-      }
-      if (hora >= 12 && hora <18)
-      {
-         return  messageWelcome = "Buenas tardes "+gender+" "+name + "!!"
-      }
-  
-      if (hora >= 18 && hora <24)
-      {
-         return  messageWelcome = "Buenas noches "+gender+" "+name + "!!"
-      }
+    if (hora >= 0 && hora < 12) {
+      return (messageWelcome = 'Buenos días ' + gender + ' ' + name + '!!');
+    }
+    if (hora >= 12 && hora < 18) {
+      return (messageWelcome = 'Buenas tardes ' + gender + ' ' + name + '!!');
+    }
 
-  }, 
+    if (hora >= 18 && hora < 24) {
+      return (messageWelcome = 'Buenas noches ' + gender + ' ' + name + '!!');
+    }
+  },
 };
