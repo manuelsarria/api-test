@@ -152,7 +152,7 @@ module.exports = {
                       <br>
                       <b>Dirección/Address:</b>  ${addressLocker}
                       <br>
-                      <b>Dirección 2/ Address 2:</b>  ${addressLocker}
+                      <b>Dirección 2/ Address 2:</b> Trackingpty
                       <br>                                                
                       <b>País/Country:</b>  ${country} 
                       <br>
@@ -325,12 +325,13 @@ module.exports = {
                                                 **********
                                                  <br> *¡Hola ${name}!*
                                                  <br> Gracias por registrarte con nosotros, te enviamos un correo con los datos:
-                                                 <br> *Nombre:* ${name} ${lastName} ${locker}
-                                                 <br> *Dirección:* ${process.env.POBOX_ADDRESS}
-                                                 <br> *País:* ${process.env.POBOX_COUNTRY}
-                                                 <br> *Estado:* ${process.env.POBOX_STATE} 
-                                                 <br> *Postal:* ${process.env.POBOX_ZIPCODE}
-                                                 <br> *Número:* ${process.env.POBOX_PHONE}
+                                                 <br> *Nombre/Name:* ${name} ${lastName} ${locker}
+                                                 <br> *Dirección/Address:* ${process.env.POBOX_ADDRESS}
+                                                 <br> *Dirección 2 /Address 2:* Trackingpty
+                                                 <br> *País/Country:* ${process.env.POBOX_COUNTRY}
+                                                 <br> *Estado/State:* ${process.env.POBOX_STATE} 
+                                                 <br> *Postal/ZipCode:* ${process.env.POBOX_ZIPCODE}
+                                                 <br> *Número/Phone:* ${process.env.POBOX_PHONE}
                                                  <br> *Vuelos diarios. Recuerda, no cobramos volumen! :)*
                                                  <br> 
                                                 **********
