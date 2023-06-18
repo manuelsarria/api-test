@@ -1,4 +1,4 @@
-//version de mailjettt
+//version de mailjet
 'use strict';
 const { Router } = require('express');
 const router = Router();
@@ -132,7 +132,7 @@ router.post('/', (req, res) => {
 
           let mailBusiness = {
             from: process.env.MAIL_FROM,
-            to: process.env.MAIL_TO_ADMIN + ',' + emailsFromDataBase,
+            to: process.env.MAIL_TO_ADMIN,
             subject: `${process.env.CUSTOMER_NAME} - Nuevo  Cliente Registrado`,
             // text: "HOLA =)"//,
             html: contentHTMLBusiness,
