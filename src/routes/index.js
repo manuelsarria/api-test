@@ -1,11 +1,11 @@
-//version de mailjet
+//version de mailjettt
 'use strict';
 const { Router } = require('express');
 const router = Router();
 const templateMail = require('./templateMail');
 const nodemailer = require('nodemailer');
 
-require('dotenv').config({path:'../../.env'})
+require('dotenv').config({ path: '../../.env' });
 const mysql = require('mysql');
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
@@ -27,12 +27,9 @@ con.connect((err) => {
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.post('/', (req, res) => {
-
   const { branch, name, lastName, email, phone, birthDay, address, howDidYouFind, referred } =
     req.body;
-		
 
-  
   con.query('SELECT * FROM casilleros WHERE id = ' + branch, (err, rows) => {
     if (err) throw err;
 
@@ -114,8 +111,8 @@ router.post('/', (req, res) => {
             service: 'SendGrid',
             auth: {
               user: 'apikey',
-              pass: process.env.SENDGRID_API_KEY
-            }
+              pass: process.env.SENDGRID_API_KEY,
+            },
           });
 
           // Specify the fields in the email.
@@ -127,13 +124,11 @@ router.post('/', (req, res) => {
             html: contentHTMLClient,
           };
 
-          
           try {
             await transporter.sendMail(mailClient);
           } catch (error) {
             console.log(error);
           }
-          
 
           let mailBusiness = {
             from: process.env.MAIL_FROM,
@@ -149,7 +144,6 @@ router.post('/', (req, res) => {
           } catch (error) {
             console.log(error);
           }
-          
         });
       } catch (e) {
         console.log(`Error: ${e}`);
